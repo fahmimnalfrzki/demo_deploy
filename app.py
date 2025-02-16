@@ -21,7 +21,7 @@ if uploaded_file is not None:
     img_array = np.expand_dims(img_array, axis=0)
     img_array = preprocess_input(img_array)
 
-    interpreter.set_tensor(input_details[0]['index'], image_array)
+    interpreter.set_tensor(input_details[0]['index'], img_array)
     predictions = interpreter.get_tensor(output_details[0]['index'])
     interpreter.invoke()
     predicted_class = classes[int(predictions[0] > 0.5)]
