@@ -5,8 +5,25 @@ from tensorflow.keras.preprocessing import image
 from tensorflow.keras.applications.vgg16 import preprocess_input
 from tensorflow.keras.models import load_model
 
-model = load_model('fruit_classifier.h5')
-classes = ['Banana', 'Apple']
+interpreter = tf.lite.Interpreter(model_path="fruit_classifier.tflite")
+interpreter.allocate_tensors()  # Alokasikan memori untuk model
+
+# Dapatkan informasi input dan output
+input_details = interpreter.get_input_details()
+output_details = interpreter.get_output_details()
+
+# Buat dummy input sesuai dengan format yang diharapkan model
+input_shape = input_details[0]['shape']  # Misalnya [1, 224, 224, 3] untuk gambar
+dummy_input = np.random.rand(*input_shape).astype(np.float32)  # Simulasi input
+
+# Set input ke model
+interpreter.set_tensor(input_details[0]['index'], dummy_input)
+
+# Jalankan inferensi
+interpreter.invoke()
+
+# Ambil hasil output
+predictions = interpreter.get_tensor(output_details[0]['index'])
 
 st.title('Banana vs Apple Classifier')
 
