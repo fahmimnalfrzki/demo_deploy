@@ -24,8 +24,9 @@ if uploaded_file is not None:
     img_array = preprocess_input(img_array)
 
     interpreter.set_tensor(input_details[0]['index'], img_array)
-    predictions = interpreter.get_tensor(output_details[0]['index'])
     interpreter.invoke()
+    predictions = interpreter.get_tensor(output_details[0]['index'])
+    
     predicted_class = classes[int(predictions[0] > 0.5)]
     confidence = predictions[0][0]
 
