@@ -30,4 +30,4 @@ if uploaded_file is not None:
     predicted_class = classes[int(predictions[0] > 0.5)]
 
     st.image(img)
-    st.write(predicted_classes)
+    st.write(predicted_class)
