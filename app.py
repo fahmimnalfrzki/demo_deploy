@@ -12,6 +12,8 @@ interpreter.allocate_tensors()  # Alokasikan memori untuk model
 input_details = interpreter.get_input_details()
 output_details = interpreter.get_output_details()
 
+classes = ['Banana', 'Apple']
+
 st.title('Banana vs Apple Classifier')
 
 uploaded_file = st.file_uploader("Upload gambar buah", type=['jpg', 'png', 'jpeg'])
