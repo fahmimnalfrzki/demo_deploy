@@ -31,3 +31,4 @@ if uploaded_file is not None:
 
     st.image(img)
     st.write(predicted_class)
+    st.write(predictions)
