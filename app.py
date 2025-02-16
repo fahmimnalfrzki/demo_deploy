@@ -28,6 +28,6 @@ if uploaded_file is not None:
     predictions = interpreter.get_tensor(output_details[0]['index'])
     
     predicted_class = classes[int(predictions[0] > 0.5)]
-    confidence = predictions[0][0]
 
-    st.image(img, caption=f'Prediksi: {predicted_class} ({confidence:.2f})', use_column_width=True)
+    st.image(img)
+    st.write(predicted_classes)
